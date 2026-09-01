@@ -2,8 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,6 +18,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static assets from Vite dist folder
+app.use(express.static(path.join(__dirname, 'dist')));
+
 // Email Transporter (Nodemailer)
 const createTransporter = () => {
   return nodemailer.createTransport({
@@ -21,7 +29,7 @@ const createTransporter = () => {
     secure: false, // true for 465, false for 587
     auth: {
       user: process.env.EMAIL_USER || 'contact.bizmaker@gmail.com',
-      pass: process.env.EMAIL_PASS || ''
+      pass: process.env.EMAIL_PASS || 'qzoqohhoohstafzg'
     }
   });
 };
@@ -152,56 +160,20 @@ Sent via BIZMAKER Web Portal`;
       </div>
     `;
 
-    // Attempt 1: Direct Nodemailer SMTP sending if APP password is provided
     let emailStatus = 'NOT_ATTEMPTED';
-    if (process.env.EMAIL_PASS && process.env.EMAIL_PASS !== 'contact.bizmaker@gmail.com' && process.env.EMAIL_PASS !== 'your_gmail_app_password_here') {
-      try {
-        const transporter = createTransporter();
-        await transporter.sendMail({
-          from: `"BIZMAKER Portal" <${process.env.EMAIL_USER}>`,
-          to: process.env.RECEIVER_EMAIL || 'contact.bizmaker@gmail.com',
-          subject: `🚀 New Marketplace Inquiry: ${name} (${city || 'N/A'}) - ${company}`,
-          html: emailHtml
-        });
-        emailStatus = 'SMTP_SUCCESS';
-        console.log(`[EMAIL SENT VIA SMTP] Sent to ${process.env.RECEIVER_EMAIL}`);
-      } catch (emailErr) {
-        console.warn(`[SMTP NOTICE] SMTP error: ${emailErr.message}`);
-        emailStatus = 'SMTP_FAILED';
-      }
-    }
-
-    // Attempt 2: Web3Forms free API integration (Zero password needed, delivers direct to contact.bizmaker@gmail.com)
-    if (emailStatus !== 'SMTP_SUCCESS') {
-      try {
-        const web3res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            access_key: process.env.WEB3FORMS_KEY || 'YOUR_WEB3FORMS_KEY', // Can be set in .env
-            email: process.env.RECEIVER_EMAIL || 'contact.bizmaker@gmail.com',
-            subject: `🚀 New Marketplace Inquiry: ${name} (${city || 'N/A'}) - ${company}`,
-            from_name: 'BIZMAKER Web Portal',
-            name,
-            company,
-            city,
-            phone,
-            email,
-            website,
-            platforms: Array.isArray(platforms) ? platforms.join(', ') : platforms,
-            revenue,
-            skus,
-            servicesNeeded: Array.isArray(servicesNeeded) ? servicesNeeded.join(', ') : servicesNeeded,
-            requirements
-          })
-        });
-        if (web3res.ok) {
-          emailStatus = 'WEB3FORMS_SUCCESS';
-          console.log('[EMAIL SENT VIA WEB3FORMS] Forwarded to contact.bizmaker@gmail.com');
-        }
-      } catch (wErr) {
-        console.warn(`[WEB3FORMS NOTICE] Web3forms API call notice: ${wErr.message}`);
-      }
+    try {
+      const transporter = createTransporter();
+      await transporter.sendMail({
+        from: `"BIZMAKER Portal" <${process.env.EMAIL_USER || 'contact.bizmaker@gmail.com'}>`,
+        to: process.env.RECEIVER_EMAIL || 'contact.bizmaker@gmail.com',
+        subject: `🚀 New Marketplace Inquiry: ${name || 'Lead'} (${city || 'N/A'}) - ${company || 'Brand'}`,
+        html: emailHtml
+      });
+      emailStatus = 'SMTP_SUCCESS';
+      console.log(`[EMAIL SENT VIA SMTP] Sent to ${process.env.RECEIVER_EMAIL || 'contact.bizmaker@gmail.com'}`);
+    } catch (emailErr) {
+      console.warn(`[SMTP NOTICE] SMTP error: ${emailErr.message}`);
+      emailStatus = 'SMTP_FAILED';
     }
 
     res.status(200).json({
@@ -218,6 +190,13 @@ Sent via BIZMAKER Web Portal`;
       success: false,
       message: 'Internal server error processing inquiry.'
     });
+  }
+});
+
+// React Single Page Application (SPA) Fallback
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
   }
 });
 
