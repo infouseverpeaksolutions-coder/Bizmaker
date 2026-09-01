@@ -1,0 +1,110 @@
+/* REFINED SLEEK CORPORATE ANIMATIONS & FLOATING CARDS */
+
+@keyframes smoothBlurIn {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(14px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes floatSmooth {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes dashDraw {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes barGrow {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* Helper Classes */
+.animate-blur-in {
+  animation: smoothBlurIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-subtle-float {
+  animation: subtleFloat 5s ease-in-out infinite;
+}
+
+.animate-float-card {
+  animation: floatSmooth 4.5s ease-in-out infinite;
+}
+
+.animate-float-card-delay-1 {
+  animation: floatSmooth 5s ease-in-out 0.6s infinite;
+}
+
+.animate-float-card-delay-2 {
+  animation: floatSmooth 4.2s ease-in-out 1.2s infinite;
+}
+
+.animate-float-card-delay-3 {
+  animation: floatSmooth 4.8s ease-in-out 1.8s infinite;
+}
+
+.animate-float-card-delay-4 {
+  animation: floatSmooth 5.2s ease-in-out 2.4s infinite;
+}
+
+.animate-float-card-delay-5 {
+  animation: floatSmooth 4.4s ease-in-out 3.0s infinite;
+}
+
+.animate-dash-draw {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: dashDraw 3s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Stagger Delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }

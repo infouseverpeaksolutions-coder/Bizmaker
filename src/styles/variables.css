@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  /* OFFICIAL BIZMAKER DARK BLUE-GREEN + TEAL COLOR SYSTEM */
+  --bg-primary: #041317;
+  --bg-secondary: #061B21;
+  --surface-dark: #0B2029;
+  --card-ui: #182638;
+  --border-color: #18343C;
+  --teal-primary: #00C9A7;
+  --teal-accent: #18D6B5;
+  --text-primary: #FFFFFF;
+  --text-secondary: #C7D2D9;
+  --text-muted: #7F929C;
+
+  --shadow-matte-sm: 0 4px 12px -2px rgba(4, 19, 23, 0.4), 0 2px 4px -1px rgba(4, 19, 23, 0.2);
+  --shadow-matte-md: 0 12px 24px -6px rgba(4, 19, 23, 0.6), 0 4px 8px -2px rgba(4, 19, 23, 0.3);
+  --shadow-matte-lg: 0 20px 40px -12px rgba(2, 10, 12, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-matte-3d: 0 24px 48px -12px rgba(2, 10, 12, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.12), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-teal-glow: 0 8px 25px -4px rgba(0, 201, 167, 0.25);
+
+  --font-family: 'Manrope', sans-serif;
+}

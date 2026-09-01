@@ -1,0 +1,141 @@
+/* 3D MATTE SURFACE STYLES & LIGHT GREY BUTTON SYSTEM (HOVER TURNS DARK GREY / DEEP NAVY) */
+
+.bg-matte-primary {
+  background: linear-gradient(135deg, #041317 0%, #061B21 50%, #041317 100%);
+}
+
+.bg-pearl-light {
+  background-color: #F8FAFC;
+}
+
+.text-biz-teal {
+  color: #00C9A7;
+}
+
+.bg-biz-teal {
+  background-color: #00C9A7;
+}
+
+/* Pearl Light Matte Card Base */
+.matte-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 
+    0 10px 25px -5px rgba(15, 23, 42, 0.05),
+    0 4px 6px -2px rgba(15, 23, 42, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.matte-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 35px -10px rgba(15, 23, 42, 0.1),
+    0 8px 12px -4px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  border-color: rgba(0, 201, 167, 0.4);
+}
+
+/* Dark Matte 3D Card */
+.matte-card-dark {
+  background: linear-gradient(160deg, #0B2029 0%, #041317 100%);
+  border: 1px solid #18343C;
+  box-shadow: 
+    0 16px 36px -10px rgba(2, 10, 12, 0.7),
+    0 4px 8px -2px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.matte-card-dark:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 24px 48px -12px rgba(2, 10, 12, 0.85),
+    0 8px 16px -4px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18);
+  border-color: rgba(0, 201, 167, 0.45);
+}
+
+/* LIGHT GREY BUTTON SYSTEM — HOVER TURNS DARK GREY / DEEP NAVY */
+.btn-matte-primary {
+  background: linear-gradient(180deg, #F1F5F9 0%, #E2E8F0 100%);
+  color: #0F172A;
+  font-weight: 800;
+  border-radius: 0.75rem;
+  border: 1px solid #CBD5E1;
+  box-shadow: 
+    0 4px 12px -2px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-matte-primary:hover {
+  background: linear-gradient(180deg, #0B2029 0%, #041317 100%); /* Deep Navy / Dark Grey */
+  color: #FFFFFF;
+  border-color: #00C9A7;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 24px -4px rgba(4, 19, 23, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-matte-primary:hover svg {
+  color: #00C9A7;
+}
+
+.btn-matte-primary:active {
+  transform: translateY(1px);
+  background: #041317;
+}
+
+/* SECONDARY BUTTON SYSTEM — LIGHT GREY TO DARK NAVY HOVER */
+.btn-matte-secondary {
+  background: linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%);
+  color: #0F172A;
+  border: 1px solid #CBD5E1;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  box-shadow: 
+    0 4px 10px -2px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-matte-secondary:hover {
+  background: #041317; /* Dark Grey / Deep Navy */
+  color: #FFFFFF;
+  border-color: #18343C;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 20px -4px rgba(4, 19, 23, 0.35);
+}
+
+/* LIGHT GREY MATTE CONTAINER FOR ICONS — HOVER TURNS DEEP NAVY */
+.icon-matte-white {
+  background: linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%);
+  color: #0F172A;
+  border: 1px solid #CBD5E1;
+  box-shadow: 
+    0 4px 10px -2px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .icon-matte-white {
+  background: #041317; /* Turns Deep Navy on Hover */
+  color: #00C9A7;
+  border-color: #00C9A7;
+  transform: scale(1.08);
+}
